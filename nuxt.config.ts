@@ -1,14 +1,19 @@
 import {defineNuxtConfig} from "nuxt/config";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: {enabled: true},
     modules: ['nuxt-svgo'],
+    ssr: false,
     css: [
         '~/assets/scss/layout.scss',
         '~/assets/scss/reset.scss',
         '~/assets/scss/main.scss',
     ],
+    runtimeConfig: {
+        public: {
+            baseURL: 'https://explore-with-me-be-nzntvuelvq-ez.a.run.app/',
+        },
+    },
     app: {
         head: {
             title: 'Explore with Me!',

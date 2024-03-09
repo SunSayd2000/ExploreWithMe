@@ -1,6 +1,17 @@
 <script setup>
 import EweButton from '../components/EweButton/EweButton.vue'
 import IconBunq from '~/assets/icons/bunq--black.svg'
+import {useAppFetch} from '~/composables/useAppFetch'
+
+const isDisabled = ref(false)
+const signIn = async () => {
+  const {data, pending, error} = await useAppFetch("/get-bunq-auth-url");
+  isDisabled.value = pending
+  if (error) {
+    isDisabled.value = false
+  }
+  location.href = data.value.url
+}
 </script>
 <template>
   <div class="main-page">
@@ -10,9 +21,9 @@ import IconBunq from '~/assets/icons/bunq--black.svg'
           Explore with Me!
         </h1>
         <div class="main-page__sign-in-row">
-          <EweButton class="main-page__sign-in-button">
+          <EweButton class="main-page__sign-in-button" @click="signIn" :disabled="isDisabled">
             <template #icon>
-              <IconBunq class="main-page__bunq-logo" filled />
+              <IconBunq class="main-page__bunq-logo" filled/>
             </template>
             <template #text>
               <h4>
@@ -24,9 +35,6 @@ import IconBunq from '~/assets/icons/bunq--black.svg'
         </div>
       </div>
     </div>
-    <footer class="main-page__footer">
-      <img class="main-page__footer-img" src="/images/city.jpg" alt=""/>
-    </footer>
   </div>
 
 </template>
@@ -35,6 +43,7 @@ import IconBunq from '~/assets/icons/bunq--black.svg'
 .main-page {
   position: relative;
   height: 100%;
+
   &__sign-in {
     z-index: 1;
     display: flex;
@@ -44,24 +53,16 @@ import IconBunq from '~/assets/icons/bunq--black.svg'
     position: absolute;
     left: 50%;
     top: 30%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
   }
+
   &__sign-in-row {
     margin-top: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  &__footer {
-    width: 100%;
-    position: absolute;
-    bottom: -10px;
-    overflow: hidden;
-  }
-  &__footer-img {
-    width: 100%;
-    object-fit: contain;
-  }
+
   &__bunq-logo {
     width: 6rem;
     height: 6rem;
