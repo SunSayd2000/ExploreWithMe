@@ -11,7 +11,11 @@
   },
   "dependencies": {
     "nuxt": "^3.10.3",
+    "nuxt-svgo": "^4.0.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "sass": "^1.71.1"
   }
 }

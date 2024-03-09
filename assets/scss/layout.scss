@@ -1,0 +1,63 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+$columns: 12;
+$gutter: 3rem;
+$gutter-column: 1.5rem;
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -$gutter-column;
+  margin-left: -$gutter-column;
+}
+
+.column,
+[class^="column-"] {
+  position: relative;
+  width: 100%;
+  padding-right: $gutter-column;
+  padding-left: $gutter-column;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: map-get($breakpoints, "sm")) {
+  .container {
+    padding: 0 0.9rem;
+  }
+}
+
+@media (min-width: map-get($breakpoints, "md")) {
+  .container {
+    max-width: 64rem;
+  }
+}
+
+@media (min-width: map-get($breakpoints, "lg")) {
+  .container {
+    max-width: 81.6rem;
+  }
+}
+
+@media (min-width: map-get($breakpoints, "xl")) {
+  .container {
+    max-width: 92.4rem;
+  }
+}
+
+@media (min-width: map-get($breakpoints, "xxl")) {
+  .container {
+    max-width: 121.2rem;
+  }
+}
